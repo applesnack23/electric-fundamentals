@@ -35,8 +35,6 @@ $$
 
 ![V/F (=Voltage / Frequency) 설명 그림 1](../assets/motor-pulse-control-01.png)
 
-*그림 1. V/F (=Voltage / Frequency) 관련 자료입니다.*
-
 ---
 
 #### FOC (=Field Oriented Control)
@@ -61,23 +59,17 @@ V/F
 
 ![V/F vs FOC 설명 그림 2](../assets/motor-pulse-control-02.png)
 
-*그림 2. V/F vs FOC 관련 자료입니다.*
-
 FOC
 
 피드백 을 기반으로 실시간 제어 포함
 
 ![V/F vs FOC 설명 그림 3](../assets/motor-pulse-control-03.png)
 
-*그림 3. V/F vs FOC 관련 자료입니다.*
-
 ---
 
 #### DC 모터 제어 방식
 
 ![DC 모터 제어 방식 설명 그림 4](../assets/motor-pulse-control-04.png)
-
-*그림 4. DC 모터 제어 방식 관련 자료입니다.*
 
 DC 모터는 가장 직관적입니다.
 
@@ -95,11 +87,9 @@ $V = E + IR$
 
 ![PWM (=Pulse Width Modulation) 설명 그림 5](../assets/motor-pulse-control-05.png)
 
-*그림 5. PWM (=Pulse Width Modulation) 관련 자료입니다.*
+듀티를 변화시켜 원하는 전압으로 변환할 수 있습니다.
 
-듀티 를 변화시켜 원하는 전압으로 변환할 수 있습니다.
-
-실제 전압을 만들어 내는 과정은 전자실습 (마이크로컨트롤러) 과정에서 진행합니다.
+실제 전압을 만들어내는 과정은 전자실습 (마이크로컨트롤러) 과정에서 진행합니다.
 
 ---
 
@@ -108,8 +98,6 @@ $V = E + IR$
 BLDC(=Brushless DC) 모터는 이름에서 알 수 있듯이 브러시가 없는 DC 모터입니다.
 
 ![BLDC 모터 설명 그림 6](../assets/motor-pulse-control-06.png)
-
-*그림 6. BLDC 모터 관련 자료입니다.*
 
 ---
 
@@ -128,8 +116,6 @@ BLDC(=Brushless DC) 모터는 이름에서 알 수 있듯이 브러시가 없는
 
 ![스테핑 모터 설명 그림 7](../assets/motor-pulse-control-07.png)
 
-*그림 7. 스테핑 모터 관련 자료입니다.*
-
 ---
 
 #### 모터 비교
@@ -144,23 +130,21 @@ BLDC(=Brushless DC) 모터는 이름에서 알 수 있듯이 브러시가 없는
 
 #### 서보 모터
 
-서보 모터는 DC모터, AC모터, 스테핑 모터 등에 엔코더를 달아 정밀제어를 할 때 사용됩니다.
+서보 시스템은 DC 모터, AC 모터, BLDC 모터 등에 엔코더와 제어기를 결합해 정밀 제어할 때 사용됩니다.
 
-서보 모터는 모터 종류가 아니라 모터에 엔코더와 컨트롤러를 장착해 모터의 상태를 모니터링하면서 정밀하게 제어하는 기능을 이야기 합니다.
+서보라는 말은 특정 모터 구조보다 피드백을 이용해 위치·속도·토크를 정밀하게 제어하는 시스템을 뜻합니다.
 
 서보 모터는 반드시 엔코더와 모터 드라이브를 포함해야 합니다.
 
 DC, AC, 스테핑 어느것이든 사용할 수 있지만, 산업에서는 주로 AC 모터를 주력으로 사용하는데 그 이유는 가격이 저렴하며 토크가 좋아 가성비가 매우 좋습니다.
 
-BLDC 는 토크가 좋지만 가격이 비싸기 때문에 소형화가 필요한 정밀 로봇에 주로 사용이 되며, 당연히 이때에도 BLDC 에 엔코더를 사용해 서보 모터로 사용합니다.
+BLDC는 토크가 좋지만 가격이 비싸기 때문에 소형화가 필요한 정밀 로봇에 주로 사용이 되며, 당연히 이때에도 BLDC에 엔코더를 사용해 서보 모터로 사용합니다.
 
 ---
 
 #### 제어기
 
 ![제어기 설명 그림 8](../assets/motor-pulse-control-08.png)
-
-*그림 8. 제어기 관련 자료입니다.*
 
 제어기의 목표는 기준값과 측정값 사이의 오차를 줄이는 것입니다.
 
@@ -169,7 +153,7 @@ BLDC 는 토크가 좋지만 가격이 비싸기 때문에 소형화가 필요�
 제어 주기가 짧을수록 변화에 빠르게 반응할 수 있지만, 센서 노이즈와 연산 부하도 함께 고려해야 합니다.
 
 $$
-MV(t)=K_p e(t)+K_i ∫_0^te(t)dt+K_d  de/dt
+MV(t)=K_p e(t)+K_i \int_0^t e(t)dt+K_d \frac{de(t)}{dt}
 $$
 
 MV(t) : 출력, 𝐾_𝑝 : 비례 상수, 𝐾_𝑖 : 적분 상수, 𝐾_𝑑 : 미분 상수
@@ -183,7 +167,7 @@ double integral = 0, derivative = 0;
 double PID_Control(double setpoint, double process_value)
 {
     // 1. 오차 계산
-    error = setpoint - process_value;			// 작은 Error 에 대한 대응 불가능
+    error = setpoint - process_value;			// 작은 Error에 대한 대응 불가능
 
     // 2. 적분항 계산
     integral += error * Ts;				 // 누적된 에러에 대해 보상할 수 있습니다.
@@ -203,17 +187,17 @@ double PID_Control(double setpoint, double process_value)
 P 제어기
 
 - $MV(t) = K_pe(t)$
-- Error 에 대한 출력 변화를 증가
+- Error에 대한 출력 변화를 증가
 
 I 제어기
 
 - $MV(t)=K_i ∫_0^te(t)dt$
-- 적분(과거의 Error 를 반영)해 출력 변화를 증가 : 정상상태 오차 감소
+- 적분(과거의 Error를 반영)해 출력 변화를 증가 : 정상상태 오차 감소
 
 D제어기
 
-- $MV(t)=K_p e(t)+K_i ∫_0^te(t)dt+K_d  de/dt$
-- 미분(현재의 Error 를 증폭)해 출력 변화를 증가 : 순간 외란에 대응
+- $MV(t)=K_p e(t)+K_i \int_0^t e(t)dt+K_d \frac{de(t)}{dt}$
+- 미분(현재의 Error를 증폭)해 출력 변화를 증가 : 순간 외란에 대응
 
 ---
 

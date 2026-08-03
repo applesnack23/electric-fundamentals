@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1-8. 접지와 중성선 그리고 노이즈 · 발표 뷰어</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; background: #08111f; color: #eaf2f5; font-family: Pretendard, "Noto Sans KR", sans-serif; }
+    body { display: grid; grid-template-rows: 1fr 68px; overflow: hidden; }
+    main { display: grid; grid-template-columns: minmax(0, 2fr) minmax(360px, 1fr); min-height: 0; }
+    .stage { display: flex; align-items: center; justify-content: center; background: #02060d; padding: 18px; min-width: 0; min-height: 0; cursor: pointer; }
+    iframe { width: 100%; height: 100%; border: 0; background: #02060d; box-shadow: 0 18px 60px rgba(0,0,0,.45); pointer-events: none; }
+    aside { min-width: 0; border-left: 1px solid #213247; background: #0d1b2b; padding: 34px 38px; overflow: auto; }
+    .eyebrow { color: #52d3d6; font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { font-size: 25px; line-height: 1.3; margin: 10px 0 28px; color: white; }
+    #script { white-space: pre-wrap; font-size: 20px; line-height: 1.75; color: #dce8ec; }
+    footer { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 18px; padding: 0 24px; background: #07101d; border-top: 1px solid #213247; }
+    .left, .right { display: flex; align-items: center; gap: 10px; }
+    .right { justify-content: flex-end; }
+    button { border: 1px solid #36506a; background: #14283c; color: white; border-radius: 8px; padding: 10px 18px; font-size: 16px; cursor: pointer; }
+    button:hover { background: #1a3d55; }
+    button:disabled { opacity: .35; cursor: default; }
+    #counter { color: #9db1bf; font-variant-numeric: tabular-nums; }
+    .hint { color: #71899b; font-size: 14px; }
+    @media (max-width: 1100px) {
+      main { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+      .stage { padding: 8px; }
+      aside { border-left: 0; border-top: 1px solid #213247; padding: 20px 24px; }
+      #script { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="stage"><iframe id="deck" src="01-08-ground-neutral-and-noise-deck.html#1" title="1-8. 접지와 중성선 그리고 노이즈 Marp 발표자료"></iframe></section>
+    <aside>
+      <div class="eyebrow">YouTube Recording Script</div>
+      <h1>1-8. 접지와 중성선 그리고 노이즈</h1>
+      <div id="script"></div>
+    </aside>
+  </main>
+  <footer>
+      <div class="left"><button id="prev">← 이전</button><span class="hint">슬라이드와 대본 함께 이동 · ← / → 방향키</span></div>
+    <div id="counter"></div>
+    <div class="right"><button id="next">다음 →</button></div>
+  </footer>
+  <script>
+    const scripts = ["안녕하세요. 이번 영상에서는 1-8. 접지와 중성선 그리고 노이즈을 학습하겠습니다. 접지와 중성선은 모양이 비슷하게 보일 수 있지만 목적이 다릅니다. 감전과 화재를 예방하는 보호 접지, 전류의 귀환 경로인 중성선, 신호 품질을 떨어뜨리는 노이즈를 구분해 살펴보았습니다. 이 장을 마치면 핵심 개념을 그림과 연결해 설명할 수 있습니다.","학습 목표의 핵심 내용을 짚어보겠습니다. 접지와 중성선의 역할을 구분할 수 있습니다. 접지 루프가 노이즈 문제를 만드는 이유를 설명할 수 있습니다. 쉴드 케이블의 올바른 접속 원칙을 이해할 수 있습니다. 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","접지 (接地, Ground)의 핵심 내용을 짚어보겠습니다. 접지란 전기 회로나 전기 장치가 대지와 전기적으로 연결되는 것을 의미. 대지(Ground)의 전위는 매우 낮으므로 0V로 간주. 예기치 않은 고전압, 과전류가 발생했을 때 전류를 안전하게 지면으로 흐르게 하여 사람과 장치를 보호. 기계 장치의 전압을 일정하게 유지. 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","접지란 전기 회로나 전기 장치가 대지와 전기적으로 연결되는 것을 의미. 대지(Ground)의 전위는 매우 낮으므로 0V로 간주. 강조된 기호와 연결 방향을 따라가면 동작 원리를 이해하기 쉽습니다.","그림의 구성 요소와 전류 또는 신호의 흐름을 차례로 확인하겠습니다. 각 요소가 어디에 연결되고 어떤 역할을 하는지 순서대로 확인해 보겠습니다.","다음은 접지 설계에서 조심해야 할 점에 관한 내용입니다. 접지 배선은 불필요한 폐루프가 생기지 않도록 구성해야 합니다. 접지 사이에 폐루프가 형성되면 발생한 노이즈가 내부에 갇히는 문제가 생깁니다. 만약 이러한 문제가 발생하게 된다면 해결하기가 매우 어렵습니다. 접지 도체의 저항은 매우 작아 접지 루프의 위치를 찾기 어려울 수 있습니다. 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다.","다음은 쉴드에 관한 내용입니다. 도선 내 전류가 흐르게 되면 도선 주위에는 자기장이 형성됩니다. 자기장 근처에 있는 다른 도선에는 자기장으로 인해 전류가 유도됩니다. → 노이즈의 원인. 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다.","먼저 쉴드 케이블에서 꼭 알아야 할 내용을 정리해 보겠습니다. 외부에서 발생한 자기장으로 인해 도선 내에 전류가 유도되지 않도록 쉴드를 사용하는 방법이 있습니다. 이때, 중요한 것은 쉴드가 반드시 접지에 직접 닿아 있어야 한다는 것입니다. 만약, 쉴드가 접지에 닿아 있지 않다면 쉴드 내에 차징효과가 발생해 전위를 갖게 되며, 전위가 높아지면 다른 곳으로 전류를 방출하게 됩니다. (정전기 발생) 전원선 일경우에는 열 발생 위험으로 인해 쉴드 보다는 거리를 두는 것이 좋습니다. 이 관계를 이해해 두면 뒤에 나오는 회로 설명도 훨씬 쉽게 따라갈 수 있습니다.","외부에서 발생한 자기장으로 인해 도선 내에 전류가 유도되지 않도록 쉴드를 사용하는 방법이 있습니다. 이때, 중요한 것은 쉴드가 반드시 접지에 직접 닿아 있어야 한다는 것입니다. 각 요소가 어디에 연결되고 어떤 역할을 하는지 순서대로 확인해 보겠습니다.","먼저 노이즈에서 꼭 알아야 할 내용을 정리해 보겠습니다. 자동화 장비의 전기분야에서 가장 어려운건 단연 노이즈입니다. 가장 손쉬운 해결 방법은 접지를 활용하는 것이며, 통신선 혹은 노이즈에 대비해야 하는 경우라면 쉴드 케이블이 상당히 중요합니다. (쉴드 케이블 외에 케이블을 꼬임선으로 사용하는 트위스트 페어 방식은 추후 통신선에서 다시 설명합니다.). 이 관계를 이해해 두면 뒤에 나오는 회로 설명도 훨씬 쉽게 따라갈 수 있습니다.","다음은 핵심 정리에 관한 내용입니다. 접지는 고장 전류를 안전하게 흘려 보호장치가 동작하도록 했습니다. 중성선은 정상 운전 중 전류가 흐를 수 있는 회로의 일부였습니다. 여러 지점에 무분별하게 접지하면 접지 루프와 전위차로 노이즈가 생길 수 있습니다. 쉴드의 접속 방식은 신호 종류와 주파수, 설비의 접지 정책에 맞춰 결정해야 합니다. 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다."];
+    const deck = document.getElementById('deck');
+    const deckBase = '01-08-ground-neutral-and-noise-deck.html';
+    const stage = document.querySelector('.stage');
+    const scriptBox = document.getElementById('script');
+    const counter = document.getElementById('counter');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let index = 0;
+    function render(updateDeck = true) {
+      index = Math.max(0, Math.min(index, scripts.length - 1));
+      scriptBox.textContent = scripts[index];
+      counter.textContent = `${index + 1} / ${scripts.length}`;
+      prev.disabled = index === 0;
+      next.disabled = index === scripts.length - 1;
+      if (updateDeck) deck.src = `${deckBase}#${index + 1}`;
+    }
+    function go(delta) { index += delta; render(true); }
+    prev.addEventListener('click', () => go(-1));
+    next.addEventListener('click', () => go(1));
+    stage.addEventListener('click', (event) => {
+      const bounds = stage.getBoundingClientRect();
+      go(event.clientX < bounds.left + bounds.width / 2 ? -1 : 1);
+    });
+    window.addEventListener('keydown', (event) => {
+      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); go(1); }
+      if (['ArrowLeft', 'PageUp'].includes(event.key)) { event.preventDefault(); go(-1); }
+      if (event.key === 'Home') { index = 0; render(true); }
+      if (event.key === 'End') { index = scripts.length - 1; render(true); }
+    });
+    render(false);
+  </script>
+</body>
+</html>

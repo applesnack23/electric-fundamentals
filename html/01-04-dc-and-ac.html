@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1-4. 직류와 교류 · 발표 뷰어</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; background: #08111f; color: #eaf2f5; font-family: Pretendard, "Noto Sans KR", sans-serif; }
+    body { display: grid; grid-template-rows: 1fr 68px; overflow: hidden; }
+    main { display: grid; grid-template-columns: minmax(0, 2fr) minmax(360px, 1fr); min-height: 0; }
+    .stage { display: flex; align-items: center; justify-content: center; background: #02060d; padding: 18px; min-width: 0; min-height: 0; cursor: pointer; }
+    iframe { width: 100%; height: 100%; border: 0; background: #02060d; box-shadow: 0 18px 60px rgba(0,0,0,.45); pointer-events: none; }
+    aside { min-width: 0; border-left: 1px solid #213247; background: #0d1b2b; padding: 34px 38px; overflow: auto; }
+    .eyebrow { color: #52d3d6; font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { font-size: 25px; line-height: 1.3; margin: 10px 0 28px; color: white; }
+    #script { white-space: pre-wrap; font-size: 20px; line-height: 1.75; color: #dce8ec; }
+    footer { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 18px; padding: 0 24px; background: #07101d; border-top: 1px solid #213247; }
+    .left, .right { display: flex; align-items: center; gap: 10px; }
+    .right { justify-content: flex-end; }
+    button { border: 1px solid #36506a; background: #14283c; color: white; border-radius: 8px; padding: 10px 18px; font-size: 16px; cursor: pointer; }
+    button:hover { background: #1a3d55; }
+    button:disabled { opacity: .35; cursor: default; }
+    #counter { color: #9db1bf; font-variant-numeric: tabular-nums; }
+    .hint { color: #71899b; font-size: 14px; }
+    @media (max-width: 1100px) {
+      main { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+      .stage { padding: 8px; }
+      aside { border-left: 0; border-top: 1px solid #213247; padding: 20px 24px; }
+      #script { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="stage"><iframe id="deck" src="01-04-dc-and-ac-deck.html#1" title="1-4. 직류와 교류 Marp 발표자료"></iframe></section>
+    <aside>
+      <div class="eyebrow">YouTube Recording Script</div>
+      <h1>1-4. 직류와 교류</h1>
+      <div id="script"></div>
+    </aside>
+  </main>
+  <footer>
+      <div class="left"><button id="prev">← 이전</button><span class="hint">슬라이드와 대본 함께 이동 · ← / → 방향키</span></div>
+    <div id="counter"></div>
+    <div class="right"><button id="next">다음 →</button></div>
+  </footer>
+  <script>
+    const scripts = ["안녕하세요. 이번 영상에서는 1-4. 직류와 교류을 학습하겠습니다. 전기는 크게 직류와 교류로 나뉩니다. 배터리와 전자회로에는 주로 직류를 사용하고, 발전소에서 생산한 전력을 멀리 보내거나 산업용 모터를 구동할 때는 주로 교류를 사용했습니다. 이 장을 마치면 핵심 개념을 그림과 연결해 설명할 수 있습니다.","학습 목표의 핵심 내용을 짚어보겠습니다. 직류와 교류의 파형 및 용도를 비교할 수 있습니다. 단상과 3상, 선간전압과 상전압을 구분할 수 있습니다. 국가별 전압과 주파수 체계가 다른 배경을 이해할 수 있습니다. 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","교류(交流, Alternating Current)의 핵심 내용을 짚어보겠습니다. 전압 변경에 대한 비용이 저렴하다는 점 때문에 장거리 전송이 유리. 저장이 어렵습니다. (배터리 X). 사용하기 어렵다는 단점 때문에 디지털 회로에서 사용되지 않습니다. 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","전압 변경에 대한 비용이 저렴하다는 점 때문에 장거리 전송이 유리. 저장이 어렵습니다. (배터리 X). 강조된 기호와 연결 방향을 따라가면 동작 원리를 이해하기 쉽습니다.","직류와 교류 비교의 핵심 용어를 그림과 연결해 전체 흐름을 정리해 보겠습니다.","먼저 직류 (DC, Direct Current)에서 꼭 알아야 할 내용을 정리해 보겠습니다. 전류의 방향이 변하지 않고 일정하게 흐르는 전류. 저장하기 용이해 배터리 전압원에 적합. 안저된 전압원으로 디지털 회로에서 사용하기 적합. 이 관계를 이해해 두면 뒤에 나오는 회로 설명도 훨씬 쉽게 따라갈 수 있습니다.","전류의 방향이 변하지 않고 일정하게 흐르는 전류. 저장하기 용이해 배터리 전압원에 적합. 각 요소가 어디에 연결되고 어떤 역할을 하는지 순서대로 확인해 보겠습니다.","교류 (AC, Alternating Current)의 핵심 내용을 짚어보겠습니다. 전류의 방향이 일정한 주기로 변하며 흐르는 전류. 전압 레벨 변경이 용의. 고 전압일 수록 전력 손실이 적기에 장거리 전송에 적합. 회전체 구동과 회전체에서 전류를 얻기 용의. 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","전류의 방향이 일정한 주기로 변하며 흐르는 전류. 전압 레벨 변경이 용의. 강조된 기호와 연결 방향을 따라가면 동작 원리를 이해하기 쉽습니다.","다음은 교류의 전압 측정에 관한 내용입니다. 교류 전압은 일반적으로 실효값($V_{RMS}$, Root Mean Square)으로 표시합니다. 그림에서 약 311 V에 해당하는 값은 최대 전압($V_{peak}$)입니다. $V_{peak}=220\\,V\\times\\sqrt{2}\\approx311\\,V$가 됩니다. 테스터기로 측정하면 실효값이 측정됩니다. 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다.","교류 전압은 일반적으로 실효값($V_{RMS}$, Root Mean Square)으로 표시합니다. 그림에서 약 311 V에 해당하는 값은 최대 전압($V_{peak}$)입니다. 그림에서 입력과 출력의 관계를 중심으로 살펴보겠습니다.","다음은 단상 2선식에 관한 내용입니다. 활선(Live Wire)은 전원 전압이 인가되는 도선입니다. 중성선(Neutral)은 부하 전류가 전원으로 돌아가는 경로를 제공해 회로를 완성합니다. 단상 2선식에서는 활선과 중성선 사이의 전압을 사용하며, 이 예의 실효값은 220 V입니다. 중성선은 전원 측의 지정된 지점에서 접지와 연결될 수 있지만, 부하 측에서는 보호 접지와 같은 도체로 취급해서는 안 됩니다. 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다.","활선(Live Wire)은 전원 전압이 인가되는 도선입니다. 중성선(Neutral)은 부하 전류가 전원으로 돌아가는 경로를 제공해 회로를 완성합니다. 그림에서 입력과 출력의 관계를 중심으로 살펴보겠습니다.","먼저 단상의 위상에서 꼭 알아야 할 내용을 정리해 보겠습니다. 각도: 한 주기 360°. 시간: 50 Hz에서는 1초에 50주기가 반복되며 한 주기는 0.02초입니다. 이 관계를 이해해 두면 뒤에 나오는 회로 설명도 훨씬 쉽게 따라갈 수 있습니다.","각도: 한 주기 360°. 시간: 50 Hz에서는 1초에 50주기가 반복되며 한 주기는 0.02초입니다. 각 요소가 어디에 연결되고 어떤 역할을 하는지 순서대로 확인해 보겠습니다.","단상 3선식의 핵심 내용을 짚어보겠습니다. 활선 A에서 중성선,. 활선 B에서 중성선,. 활선 A에서 활선 B,. 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","활선 A에서 중성선,. 활선 B에서 중성선,. 강조된 기호와 연결 방향을 따라가면 동작 원리를 이해하기 쉽습니다.","먼저 3상 3선식에서 꼭 알아야 할 내용을 정리해 보겠습니다. Phase A에서 Phase B,. Phase B에서 Phase C,. Phase C에서 Phase A,. 이 관계를 이해해 두면 뒤에 나오는 회로 설명도 훨씬 쉽게 따라갈 수 있습니다.","Phase A에서 Phase B,. Phase B에서 Phase C,. 각 요소가 어디에 연결되고 어떤 역할을 하는지 순서대로 확인해 보겠습니다.","다음은 3상 3선식 분전함에 관한 내용입니다. 380V 단상 3개 (RS, ST, TR). 380V 3상 1개 (RST). 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다.","380V 단상 3개 (RS, ST, TR). 380V 3상 1개 (RST). 그림에서 입력과 출력의 관계를 중심으로 살펴보겠습니다.","먼저 버스바와 케이블 비교에서 꼭 알아야 할 내용을 정리해 보겠습니다. 버스바 대신 케이블도 많이 사용 용량이 크면 케이블이 불편합니다. 이 관계를 이해해 두면 뒤에 나오는 회로 설명도 훨씬 쉽게 따라갈 수 있습니다.","버스바 대신 케이블도 많이 사용 용량이 크면 케이블이 불편합니다. 각 요소가 어디에 연결되고 어떤 역할을 하는지 순서대로 확인해 보겠습니다.","다음은 3상 4선식에 관한 내용입니다. Phase A에서 Phase B,. Phase B에서 Phase C,. Phase C에서 Phase A,. Phase A에서 Neutral,. 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다.","Phase A에서 Phase B,. Phase B에서 Phase C,. 그림에서 입력과 출력의 관계를 중심으로 살펴보겠습니다.","3상 4선식 분전함의 핵심 내용을 짚어보겠습니다. 380V 단상 3개 (RS, ST, TR). 220V 단상 3개 (RN, SN, TN). 380V 3상 3선식 1개 (R, S, T). 380V 3상 4선식 1개 (R, S, T, N). 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","380V 단상 3개 (RS, ST, TR). 220V 단상 3개 (RN, SN, TN). 강조된 기호와 연결 방향을 따라가면 동작 원리를 이해하기 쉽습니다.","먼저 단상과 3상에서 꼭 알아야 할 내용을 정리해 보겠습니다. 한 개의 활선 를 사용. 두 개의 전선에서 1개의 단상 전원 공급 가능. 3개의 Wire를 사용. 3개의 전선에서 3개의 단상 전원과 1개의 3상 전원 공급 가능 (3상 3선식). 이 관계를 이해해 두면 뒤에 나오는 회로 설명도 훨씬 쉽게 따라갈 수 있습니다.","한 개의 활선 를 사용. 두 개의 전선에서 1개의 단상 전원 공급 가능. 각 요소가 어디에 연결되고 어떤 역할을 하는지 순서대로 확인해 보겠습니다.","단상과 3상 도면표기의 핵심 내용을 짚어보겠습니다. L(활선)과 N(중성선)을 사용. 예: L0, L1, N0, N1…. 미국기준: A, B, C, N(중성선)을 사용. 유럽기준: R, S, T, N(중성선)을 사용. 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","L(활선)과 N(중성선)을 사용. 예: L0, L1, N0, N1…. 강조된 기호와 연결 방향을 따라가면 동작 원리를 이해하기 쉽습니다.","먼저 110V 사용 이유에서 꼭 알아야 할 내용을 정리해 보겠습니다. 최초 에디슨이 100V에서 동작하는 백열전구를 개발 다만, 송전상에 손실되는 전류를 감안해 전기는 안전율을 더해 110V를 사용 이후 더 높은 배전 전압을 사용하면 같은 전력을 더 작은 전류로 전달해 배선 손실을 줄일 수 있어 220 V 또는 230 V 체계가 널리 사용되었습니다. 미국과 일본은 기존 110V 전기가 많이 사용되고 있어 변경을 못함 220V는 110V로 전환하기 쉬워 사용했으며 330V 또는 그 이상의 전기는 위험해서 적용하지 않음 220V는 2~3mm로 절연이 유지되지만, 전압이 높아지면 절연 거리 증가로 인해 비용 증가. 이 관계를 이해해 두면 뒤에 나오는 회로 설명도 훨씬 쉽게 따라갈 수 있습니다.","먼저 50Hz, 60Hz 사용 이유에서 꼭 알아야 할 내용을 정리해 보겠습니다. 전력 주파수는 조명 깜박임, 회전기기의 특성, 변압기 크기와 손실 등에 영향을 주었습니다. 현재의 50 Hz와 60 Hz 체계는 기술적 절충과 각 지역 전력망의 역사적 선택을 통해 정착했습니다. 주파수가 다른 장비를 사용할 때는 정격 주파수와 제조사 사양을 반드시 확인해야 합니다. 이 관계를 이해해 두면 뒤에 나오는 회로 설명도 훨씬 쉽게 따라갈 수 있습니다.","다음은 핵심 정리에 관한 내용입니다. 직류는 극성과전류 방향이 일정하며, 교류는 시간에 따라 크기와 방향이 변했습니다. 단상은 일반 가정과 소형 부하에, 3상은 산업용 대형 부하에 주로 사용되었습니다. 3상 4선식에서는 선간전압과 상전압을 모두 사용할 수 있습니다. 전압이나 결선 방식을 확인할 때는 임의로 판단하지 말고 도면과 측정값을 함께 확인해야 합니다. 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다."];
+    const deck = document.getElementById('deck');
+    const deckBase = '01-04-dc-and-ac-deck.html';
+    const stage = document.querySelector('.stage');
+    const scriptBox = document.getElementById('script');
+    const counter = document.getElementById('counter');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let index = 0;
+    function render(updateDeck = true) {
+      index = Math.max(0, Math.min(index, scripts.length - 1));
+      scriptBox.textContent = scripts[index];
+      counter.textContent = `${index + 1} / ${scripts.length}`;
+      prev.disabled = index === 0;
+      next.disabled = index === scripts.length - 1;
+      if (updateDeck) deck.src = `${deckBase}#${index + 1}`;
+    }
+    function go(delta) { index += delta; render(true); }
+    prev.addEventListener('click', () => go(-1));
+    next.addEventListener('click', () => go(1));
+    stage.addEventListener('click', (event) => {
+      const bounds = stage.getBoundingClientRect();
+      go(event.clientX < bounds.left + bounds.width / 2 ? -1 : 1);
+    });
+    window.addEventListener('keydown', (event) => {
+      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); go(1); }
+      if (['ArrowLeft', 'PageUp'].includes(event.key)) { event.preventDefault(); go(-1); }
+      if (event.key === 'Home') { index = 0; render(true); }
+      if (event.key === 'End') { index = scripts.length - 1; render(true); }
+    });
+    render(false);
+  </script>
+</body>
+</html>

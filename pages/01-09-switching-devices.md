@@ -15,8 +15,6 @@
 
 ![스위치 설명 그림 1](../assets/switching-devices-01.png)
 
-*그림 1. 스위치 관련 자료입니다.*
-
 - 표시등
 - 누름버튼 스위치
 - 조광형 누름버튼 스위치
@@ -25,19 +23,13 @@
 
 ![스위치 설명 그림 2](../assets/switching-devices-02.png)
 
-*그림 2. 스위치 관련 자료입니다.*
-
 ![스위치 설명 그림 3](../assets/switching-devices-03.png)
-
-*그림 3. 스위치 관련 자료입니다.*
 
 ---
 
 #### 표시등 (=LAMP)
 
 ![표시등 (=LAMP) 설명 그림 4](../assets/switching-devices-04.png)
-
-*그림 4. 표시등 (=LAMP) 관련 자료입니다.*
 
 사양에 따른 전압을 공급하면 표시등을 ON 할 수 있습니다.
 
@@ -47,11 +39,7 @@
 
 ![스위치 회로 설명 그림 5](../assets/switching-devices-05.png)
 
-*그림 5. 스위치 회로 관련 자료입니다.*
-
 ![스위치 회로 설명 그림 6](../assets/switching-devices-06.png)
-
-*그림 6. 스위치 회로 관련 자료입니다.*
 
 - Normal Closed (NC) : 1 → 2
     - B접점 또는 B-Contact
@@ -60,8 +48,6 @@
 - Lamp : x1 → x2
 
 ![스위치 회로 설명 그림 7](../assets/switching-devices-07.png)
-
-*그림 7. 스위치 회로 관련 자료입니다.*
 
 - 버튼을 누를 때 램프에 불이 들어오게 하는 배선도
 
@@ -73,19 +59,13 @@
 
 ![소자 설명 설명 그림 8](../assets/switching-devices-08.png)
 
-*그림 8. 소자 설명 관련 자료입니다.*
-
 DC 배터리 장치
 
 ![소자 설명 설명 그림 9](../assets/switching-devices-09.png)
 
-*그림 9. 소자 설명 관련 자료입니다.*
-
 부하 (Lamp, Motor 등)
 
 ![소자 설명 설명 그림 10](../assets/switching-devices-10.png)
-
-*그림 10. 소자 설명 관련 자료입니다.*
 
 ---
 
@@ -95,21 +75,15 @@ DC 배터리 장치
 
 ![시퀀스 회로 설명 그림 11](../assets/switching-devices-11.png)
 
-*그림 11. 시퀀스 회로 관련 자료입니다.*
-
 - B 접점을 사용해서 Lamp Off
 
 ![시퀀스 회로 설명 그림 12](../assets/switching-devices-12.png)
-
-*그림 12. 시퀀스 회로 관련 자료입니다.*
 
 ---
 
 #### 스위치 종류
 
 ![스위치 종류 설명 그림 13](../assets/switching-devices-13.png)
-
-*그림 13. 스위치 종류 관련 자료입니다.*
 
 누름 스위치
 
@@ -137,8 +111,6 @@ DC 배터리 장치
 
 ![접점 추가 설명 그림 14](../assets/switching-devices-14.png)
 
-*그림 14. 접점 추가 관련 자료입니다.*
-
 ---
 
 #### DO (=Digital Output)
@@ -147,27 +119,19 @@ DC 배터리 장치
 
 ![DO (=Digital Output) 설명 그림 15](../assets/switching-devices-15.png)
 
-*그림 15. DO (=Digital Output) 관련 자료입니다.*
-
 - Sink (빠지다, 가라앉다)
 
 ![DO (=Digital Output) 설명 그림 16](../assets/switching-devices-16.png)
 
-*그림 16. DO (=Digital Output) 관련 자료입니다.*
-
 - 부하를 기준으로 극성이 변경
 
 ![DO (=Digital Output) 설명 그림 17](../assets/switching-devices-17.png)
-
-*그림 17. DO (=Digital Output) 관련 자료입니다.*
 
 ---
 
 #### 릴레이
 
 ![릴레이 설명 그림 18](../assets/switching-devices-18.png)
-
-*그림 18. 릴레이 관련 자료입니다.*
 
 자동제어에서 가장 많이 사용됨
 
@@ -193,11 +157,7 @@ PCB를 관통해 바닥면에서 납땜하는 방식
 
 ![반도체 Package 설명 그림 19](../assets/switching-devices-19.png)
 
-*그림 19. 반도체 Package 관련 자료입니다.*
-
 ![반도체 Package 설명 그림 20](../assets/switching-devices-20.png)
-
-*그림 20. 반도체 Package 관련 자료입니다.*
 
 SMD (=Surface Mount Device)
 
@@ -207,11 +167,7 @@ PCB 표면에서 납땜하는 방식
 
 ![반도체 Package 설명 그림 21](../assets/switching-devices-21.png)
 
-*그림 21. 반도체 Package 관련 자료입니다.*
-
 ![반도체 Package 설명 그림 22](../assets/switching-devices-22.png)
-
-*그림 22. 반도체 Package 관련 자료입니다.*
 
 ---
 
@@ -219,15 +175,11 @@ PCB 표면에서 납땜하는 방식
 
 ![다이오드 설명 그림 23](../assets/switching-devices-23.png)
 
-*그림 23. 다이오드 관련 자료입니다.*
-
 PN 다이오드는 P형 반도체와 N형 반도체로 이루어진 소자
 
-Anode(+) 에서 Cathode(-) 로 전류가 흐릅니다.
+Anode(+)에서 Cathode(-)로 전류가 흐릅니다.
 
 ![다이오드 설명 그림 24](../assets/switching-devices-24.png)
-
-*그림 24. 다이오드 관련 자료입니다.*
 
 ---
 
@@ -237,29 +189,21 @@ Anode(+) 에서 Cathode(-) 로 전류가 흐릅니다.
 
 ![원리 설명 그림 25](../assets/switching-devices-25.png)
 
-*그림 25. 원리 관련 자료입니다.*
-
 공핍층이 없어짐
 
 - 역방향 전압
 
 ![원리 설명 그림 26](../assets/switching-devices-26.png)
 
-*그림 26. 원리 관련 자료입니다.*
-
 공핍층이 커짐
 
 ---
 
-#### 트랜지스터 (=Bipolar Junction 트랜지스터)
+#### 트랜지스터 (=Bipolar Junction Transistor)
 
-![트랜지스터 (=Bipolar Junction 트랜지스터) 설명 그림 27](../assets/switching-devices-27.png)
+![트랜지스터 (=Bipolar Junction Transistor) 설명 그림 27](../assets/switching-devices-27.png)
 
-*그림 27. 트랜지스터 (=Bipolar Junction 트랜지스터) 관련 자료입니다.*
-
-![트랜지스터 (=Bipolar Junction 트랜지스터) 설명 그림 28](../assets/switching-devices-28.png)
-
-*그림 28. 트랜지스터 (=Bipolar Junction 트랜지스터) 관련 자료입니다.*
+![트랜지스터 (=Bipolar Junction Transistor) 설명 그림 28](../assets/switching-devices-28.png)
 
 비교적 저렴한 비용
 
@@ -277,16 +221,12 @@ Anode(+) 에서 Cathode(-) 로 전류가 흐릅니다.
 
 ![절연 (=Isolation) 설명 그림 29](../assets/switching-devices-29.png)
 
-*그림 29. 절연 (=Isolation) 관련 자료입니다.*
-
 릴레이
 
 - Control Line - Load Line 절연 가능
 - 노이즈 차단
 
 ![절연 (=Isolation) 설명 그림 30](../assets/switching-devices-30.png)
-
-*그림 30. 절연 (=Isolation) 관련 자료입니다.*
 
 트랜지스터
 
@@ -297,15 +237,11 @@ Anode(+) 에서 Cathode(-) 로 전류가 흐릅니다.
 
 ---
 
-#### 포토 커플러 (=Optocoupler)
+#### 포토커플러 (=Optocoupler)
 
-![포토 커플러 (=Optocoupler) 설명 그림 31](../assets/switching-devices-31.png)
+![포토커플러 (=Optocoupler) 설명 그림 31](../assets/switching-devices-31.png)
 
-*그림 31. 포토 커플러 (=Optocoupler) 관련 자료입니다.*
-
-![포토 커플러 (=Optocoupler) 설명 그림 32](../assets/switching-devices-32.png)
-
-*그림 32. 포토 커플러 (=Optocoupler) 관련 자료입니다.*
+![포토커플러 (=Optocoupler) 설명 그림 32](../assets/switching-devices-32.png)
 
 비교적 비싼 비용
 
@@ -321,27 +257,21 @@ Anode(+) 에서 Cathode(-) 로 전류가 흐릅니다.
 
 ---
 
-#### Optocoupler vs 트랜지스터
+#### Optocoupler vs Transistor
 
 - Optocoupler
 
-![Optocoupler vs 트랜지스터 설명 그림 33](../assets/switching-devices-33.png)
-
-*그림 33. Optocoupler vs 트랜지스터 관련 자료입니다.*
+![Optocoupler vs Transistor 설명 그림 33](../assets/switching-devices-33.png)
 
 - 트랜지스터
 
-![Optocoupler vs 트랜지스터 설명 그림 34](../assets/switching-devices-34.png)
-
-*그림 34. Optocoupler vs 트랜지스터 관련 자료입니다.*
+![Optocoupler vs Transistor 설명 그림 34](../assets/switching-devices-34.png)
 
 ---
 
-#### MOSFET (=Metal-Oxide-Semiconductor Field-Effect 트랜지스터)
+#### MOSFET (=Metal-Oxide-Semiconductor Field-Effect Transistor)
 
-![MOSFET (=Metal-Oxide-Semiconductor Field-Effect 트랜지스터) 설명 그림 35](../assets/switching-devices-35.png)
-
-*그림 35. MOSFET (=Metal-Oxide-Semiconductor Field-Effect 트랜지스터) 관련 자료입니다.*
+![MOSFET (=Metal-Oxide-Semiconductor Field-Effect Transistor) 설명 그림 35](../assets/switching-devices-35.png)
 
 트랜지스터 (=BJT) 대비 비쌈
 
@@ -349,17 +279,13 @@ Anode(+) 에서 Cathode(-) 로 전류가 흐릅니다.
 
 전력소자 스위칭 용도로 많이 사용 (예: SMPS)
 
-![MOSFET (=Metal-Oxide-Semiconductor Field-Effect 트랜지스터) 설명 그림 36](../assets/switching-devices-36.png)
+![MOSFET (=Metal-Oxide-Semiconductor Field-Effect Transistor) 설명 그림 36](../assets/switching-devices-36.png)
 
-*그림 36. MOSFET (=Metal-Oxide-Semiconductor Field-Effect 트랜지스터) 관련 자료입니다.*
-
-![MOSFET (=Metal-Oxide-Semiconductor Field-Effect 트랜지스터) 설명 그림 37](../assets/switching-devices-37.png)
-
-*그림 37. MOSFET (=Metal-Oxide-Semiconductor Field-Effect 트랜지스터) 관련 자료입니다.*
+![MOSFET (=Metal-Oxide-Semiconductor Field-Effect Transistor) 설명 그림 37](../assets/switching-devices-37.png)
 
 ---
 
-#### IGBT (=Insulated Gate Bipolar 트랜지스터)
+#### IGBT (=Insulated Gate Bipolar Transistor)
 
 고전력 고속 스위칭 소자
 
@@ -367,35 +293,24 @@ Anode(+) 에서 Cathode(-) 로 전류가 흐릅니다.
 
 (예: 인버터, 모터 드라이브)
 
-![IGBT (=Insulated Gate Bipolar 트랜지스터) 설명 그림 38](../assets/switching-devices-38.png)
+![IGBT (=Insulated Gate Bipolar Transistor) 설명 그림 38](../assets/switching-devices-38.png)
 
-*그림 38. IGBT (=Insulated Gate Bipolar 트랜지스터) 관련 자료입니다.*
+![IGBT (=Insulated Gate Bipolar Transistor) 설명 그림 39](../assets/switching-devices-39.png)
 
-![IGBT (=Insulated Gate Bipolar 트랜지스터) 설명 그림 39](../assets/switching-devices-39.png)
-
-*그림 39. IGBT (=Insulated Gate Bipolar 트랜지스터) 관련 자료입니다.*
-
-![IGBT (=Insulated Gate Bipolar 트랜지스터) 설명 그림 40](../assets/switching-devices-40.png)
-
-*그림 40. IGBT (=Insulated Gate Bipolar 트랜지스터) 관련 자료입니다.*
+![IGBT (=Insulated Gate Bipolar Transistor) 설명 그림 40](../assets/switching-devices-40.png)
 
 ---
 
-#### SSR (=Solid State 릴레이)
+#### SSR (=Solid State Relay)
 
-![SSR (=Solid State 릴레이) 설명 그림 41](../assets/switching-devices-41.png)
-
-*그림 41. SSR (=Solid State 릴레이) 관련 자료입니다.*
+![SSR (=Solid State Relay) 설명 그림 41](../assets/switching-devices-41.png)
 
 반도체로 만든 릴레이
 
-릴레이와 같이 전원을 제어할 수 있지만,
-릴레이와 다르게 기계적 접점이 없어
+SSR은 릴레이처럼 부하 전원을 제어하지만 기계적 접점이 없습니다.
 반영구적으로 사용 할 수 있습니다.
 
-![SSR (=Solid State 릴레이) 설명 그림 42](../assets/switching-devices-42.png)
-
-*그림 42. SSR (=Solid State 릴레이) 관련 자료입니다.*
+![SSR (=Solid State Relay) 설명 그림 42](../assets/switching-devices-42.png)
 
 ---
 

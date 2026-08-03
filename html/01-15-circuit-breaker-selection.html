@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1-15. 차단기와 올바른 차단기 선정 · 발표 뷰어</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; background: #08111f; color: #eaf2f5; font-family: Pretendard, "Noto Sans KR", sans-serif; }
+    body { display: grid; grid-template-rows: 1fr 68px; overflow: hidden; }
+    main { display: grid; grid-template-columns: minmax(0, 2fr) minmax(360px, 1fr); min-height: 0; }
+    .stage { display: flex; align-items: center; justify-content: center; background: #02060d; padding: 18px; min-width: 0; min-height: 0; cursor: pointer; }
+    iframe { width: 100%; height: 100%; border: 0; background: #02060d; box-shadow: 0 18px 60px rgba(0,0,0,.45); pointer-events: none; }
+    aside { min-width: 0; border-left: 1px solid #213247; background: #0d1b2b; padding: 34px 38px; overflow: auto; }
+    .eyebrow { color: #52d3d6; font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { font-size: 25px; line-height: 1.3; margin: 10px 0 28px; color: white; }
+    #script { white-space: pre-wrap; font-size: 20px; line-height: 1.75; color: #dce8ec; }
+    footer { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 18px; padding: 0 24px; background: #07101d; border-top: 1px solid #213247; }
+    .left, .right { display: flex; align-items: center; gap: 10px; }
+    .right { justify-content: flex-end; }
+    button { border: 1px solid #36506a; background: #14283c; color: white; border-radius: 8px; padding: 10px 18px; font-size: 16px; cursor: pointer; }
+    button:hover { background: #1a3d55; }
+    button:disabled { opacity: .35; cursor: default; }
+    #counter { color: #9db1bf; font-variant-numeric: tabular-nums; }
+    .hint { color: #71899b; font-size: 14px; }
+    @media (max-width: 1100px) {
+      main { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+      .stage { padding: 8px; }
+      aside { border-left: 0; border-top: 1px solid #213247; padding: 20px 24px; }
+      #script { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="stage"><iframe id="deck" src="01-15-circuit-breaker-selection-deck.html#1" title="1-15. 차단기와 올바른 차단기 선정 Marp 발표자료"></iframe></section>
+    <aside>
+      <div class="eyebrow">YouTube Recording Script</div>
+      <h1>1-15. 차단기와 올바른 차단기 선정</h1>
+      <div id="script"></div>
+    </aside>
+  </main>
+  <footer>
+      <div class="left"><button id="prev">← 이전</button><span class="hint">슬라이드와 대본 함께 이동 · ← / → 방향키</span></div>
+    <div id="counter"></div>
+    <div class="right"><button id="next">다음 →</button></div>
+  </footer>
+  <script>
+    const scripts = ["안녕하세요. 이번 영상에서는 1-15. 차단기와 올바른 차단기 선정을 학습하겠습니다. 보호장치는 고장이 발생했을 때 사람, 배선, 기기를 안전하게 보호해야 합니다. 모든 차단기가 같은 고장을 같은 속도로 차단하는 것은 아니므로 보호 대상과 사고 종류를 먼저 구분해야 합니다. 이 장을 마치면 핵심 개념을 그림과 연결해 설명할 수 있습니다.","학습 목표의 핵심 내용을 짚어보겠습니다. 퓨즈, MCCB, MCB, CP, ELCB의 역할을 구분할 수 있습니다. 과전류·단락·누전·모터 과부하를 서로 구분할 수 있습니다. 부하 특성, 돌입전류, 차단 특성을 고려한 선정 절차를 이해할 수 있습니다. 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","먼저 퓨즈에서 꼭 알아야 할 내용을 정리해 보겠습니다. 비교적 저렴한 가격으로 과전류로부터 보호. 과전류로 한 번 차단된 퓨즈는 재사용할 수 없습니다. 이 관계를 이해해 두면 뒤에 나오는 회로 설명도 훨씬 쉽게 따라갈 수 있습니다.","비교적 저렴한 가격으로 과전류로부터 보호. 과전류로 한 번 차단된 퓨즈는 재사용할 수 없습니다. 각 요소가 어디에 연결되고 어떤 역할을 하는지 순서대로 확인해 보겠습니다.","다음은 배선용 차단기 MCCB (=Molded Case Circuit Breaker)에 관한 내용입니다. 예: 2극, 3극, 4극. 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다.","예: 2극, 3극, 4극. 그림에서 입력과 출력의 관계를 중심으로 살펴보겠습니다.","그림의 구성 요소와 전류 또는 신호의 흐름을 차례로 확인하겠습니다. 각 요소가 어디에 연결되고 어떤 역할을 하는지 순서대로 확인해 보겠습니다.","그림의 구성 요소와 전류 또는 신호의 흐름을 차례로 확인하겠습니다. 각 요소가 어디에 연결되고 어떤 역할을 하는지 순서대로 확인해 보겠습니다.","다음은 회로 보호기 CP (=Circuit Protector)에 관한 내용입니다. 순시형 - 즉시 (MCCB, MCB보다 빠르다.). 고속형 - 10초 이내. 중속형 - 120초 이내. 저속형 - 300초 이내. 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다.","순시형 - 즉시 (MCCB, MCB보다 빠르다.). 고속형 - 10초 이내. 그림에서 입력과 출력의 관계를 중심으로 살펴보겠습니다.","MCB vs CP의 핵심 내용을 짚어보겠습니다. MCCB, MCB는 배선용 차단기 CP는 회로 보호기 MCB 나 MCCB는 과전류가 흘러 열이 발생한 이후에 차단하는 특성으로 반응 속도가 느립니다. 과전류 이후에 발생하는 선로에 발생하는 화재로 부터 보호 (부품 보호 목적이 아님) CP는 과전류가 흐르는 것을 감지하여 차단하기 때문에 반응 속도가 빨라 회로를 보호할 수 있습니다. (부품 보호 목적) CP는 비싸며 큰 용량이 없습니다. 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","전자개폐기 MC (=Magnetic Contactor)의 핵심 내용을 짚어보겠습니다. “코일”에 전원을 투입하면 “스위치”가 ON 됩니다. “스위치”가 ON되면 주회로를 통해 전력 공급이 가능해집니다. “스위치”가 ON되면 보조 접점을 통해 스위치 상태를 피드백받을 수 있습니다. 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","“코일”에 전원을 투입하면 “스위치”가 ON 됩니다. “스위치”가 ON되면 주회로를 통해 전력 공급이 가능해집니다. 강조된 기호와 연결 방향을 따라가면 동작 원리를 이해하기 쉽습니다.","누전 차단기 ELCB (=Earth Leakage Circuit Breaker, 또는 ELB)의 핵심 내용을 짚어보겠습니다. MCCB에 누전 차단 기능이 추가된 차단기. 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","MCCB에 누전 차단 기능이 추가된 차단기. 강조된 기호와 연결 방향을 따라가면 동작 원리를 이해하기 쉽습니다.","변류기 CT (=Current Transformer)의 핵심 내용을 짚어보겠습니다. 도선 내 전류가 흐르면 자기장이 형성. 자기장으로 인해 변류기에 전류가 생성. 전류의 크기를 일정한 비율로 변환 (변류비). 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","도선 내 전류가 흐르면 자기장이 형성. 자기장으로 인해 변류기에 전류가 생성. 강조된 기호와 연결 방향을 따라가면 동작 원리를 이해하기 쉽습니다.","변류기 + 전류계의 핵심 내용을 짚어보겠습니다. 전류 모니터링. 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","전류 모니터링. 강조된 기호와 연결 방향을 따라가면 동작 원리를 이해하기 쉽습니다.","다음은 전류 측정 테스터기에 관한 내용입니다. 변류기와 같은 원리. 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다.","변류기와 같은 원리. 그림에서 입력과 출력의 관계를 중심으로 살펴보겠습니다.","다음은 영상 변류기 ZCT (=Zero Current Transformer)에 관한 내용입니다. 누전 차단기의 원리. 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다.","누전 차단기의 원리. 그림에서 입력과 출력의 관계를 중심으로 살펴보겠습니다.","누전 (누설 전류)의 핵심 내용을 짚어보겠습니다. MCCB에 ZCT를 넣고 누설 전류를 감지 누전이 감지되면 전원을 차단하는 누전 보호 목적이 있습니다. 단, ZCT의 원리는 교류에서만 적용할 수 있습니다. (DC는 누설 전류 판단 불가). 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","MCCB에 ZCT를 넣고 누설 전류를 감지 누전이 감지되면 전원을 차단하는 누전 보호 목적이 있습니다. 단, ZCT의 원리는 교류에서만 적용할 수 있습니다. 강조된 기호와 연결 방향을 따라가면 동작 원리를 이해하기 쉽습니다.","먼저 다양한 차단기 종류에서 꼭 알아야 할 내용을 정리해 보겠습니다. MBB: 자기 차단기. ACB: 기중 차단기. ABCB: 공기 차단기. OCB: 유입 차단기. 이 관계를 이해해 두면 뒤에 나오는 회로 설명도 훨씬 쉽게 따라갈 수 있습니다.","도면 표기에서 주의할 점의 핵심 내용을 짚어보겠습니다. → IEC 규격에 따르면 전부 다르게 표현 되어야 함 도면을 그리는 사람은 정확하게 모델명을 기입 도면을 보는 사람은 모델명을 보고 정확히 확인할 수 있어야 합니다. 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","→ IEC 규격에 따르면 전부 다르게 표현 되어야 함 도면을 그리는 사람은 정확하게 모델명을 기입 도면을 보는 사람은 모델명을 보고 정확히 확인할 수 있어야 합니다. 강조된 기호와 연결 방향을 따라가면 동작 원리를 이해하기 쉽습니다.","다음은 SYMBOL LIST에 관한 내용입니다. 설계자는 도면 내 SYMBOL LIST를 작성해야 하고, 정확히 확인할 수 있도록 해야 합니다. 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다.","설계자는 도면 내 SYMBOL LIST를 작성해야 하고, 정확히 확인할 수 있도록 해야 합니다. 그림에서 입력과 출력의 관계를 중심으로 살펴보겠습니다.","먼저 RCD (=Residual Current Device)에서 꼭 알아야 할 내용을 정리해 보겠습니다. Type AC: 정현파 교류 누설 전류를 감지. Type A: AC + 펄스 DC 감지. Type B: AC + DC 누설 전류 감지. Type F: 고주파 AC + 일부 DC 감지. 이 관계를 이해해 두면 뒤에 나오는 회로 설명도 훨씬 쉽게 따라갈 수 있습니다.","먼저 차단기 선정에서 꼭 알아야 할 내용을 정리해 보겠습니다. 가장 정확한 방법은 차단기의 시간-전류 특성곡선과 부하의 돌입 전류 특성을 함께 확인하는 것입니다. 변압기의 경우 130% 선에서 선정. 모터의 경우 200% ~ 300% 선에서 선정. MCCB의 경우 차단 속도가 느리기 때문에 2.5배 정도 사용. 이 관계를 이해해 두면 뒤에 나오는 회로 설명도 훨씬 쉽게 따라갈 수 있습니다.","전자식 과전류 계전기 EOCR (=Electronic Over Current Relay)의 핵심 내용을 짚어보겠습니다. MC와 조합해서 모터 과부하 시 차단. D-TIME (Delay Time): 기동부하를 무시하기 위한 설정. LOAD (A): 모터의 정격 전류를 설정. O-TIME (Over Current Operating Delay Time):. 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","MC와 조합해서 모터 과부하 시 차단. D-TIME (Delay Time): 기동부하를 무시하기 위한 설정. 강조된 기호와 연결 방향을 따라가면 동작 원리를 이해하기 쉽습니다.","일반적인 모터 구동 회로의 핵심 내용을 짚어보겠습니다. 1. 전원 RST가 인가되고 2. 배선 보호를 위한 배선용 차단기를 지납니다. 3. 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","다음은 모터 차단기 선정에 관한 내용입니다. AC-3: 일반적인 모터 부하. AC-4: 빈번한 기동/정지 부하. AC-3: 정격 전류의 2.5 ~ 3배수. AC-4: 정격 전류의 3 ~ 3.5배수. 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다.","AC-3: 일반적인 모터 부하. AC-4: 빈번한 기동/정지 부하. 그림에서 입력과 출력의 관계를 중심으로 살펴보겠습니다.","먼저 역률 vs 효율에서 꼭 알아야 할 내용을 정리해 보겠습니다. **역률** 공급된 전력을 얼마나 효과적으로 사용하는지에 대한 값으로 다음과 같이 계산됩니다. 커패시터(위상 선행), 코일(위상 후행) 등의 이유로 무효전력이 발생합니다. **효율** 효율은 입력 대비 출력 전력으로 다음과 같이 계산됩니다. 열 손실 같은 손실, 전기 에너지를 100% 전환할 수 없습니다. 이 관계를 이해해 두면 뒤에 나오는 회로 설명도 훨씬 쉽게 따라갈 수 있습니다.","**역률** 공급된 전력을 얼마나 효과적으로 사용하는지에 대한 값으로 다음과 같이 계산됩니다. 커패시터(위상 선행), 코일(위상 후행) 등의 이유로 무효전력이 발생합니다. 각 요소가 어디에 연결되고 어떤 역할을 하는지 순서대로 확인해 보겠습니다.","다음은 모터 차단기 선정의 예에 관한 내용입니다. AC-3: 정격 전류의 2.5 ~ 3배수. AC-4: 정격 전류의 3 ~ 3.5배수. AC-3: 정격 전류의 1.5 ~ 2배수. AC-4: 정격 전류의 2 ~ 2.5배수. 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다.","AC-3: 정격 전류의 2.5 ~ 3배수. AC-4: 정격 전류의 3 ~ 3.5배수. 그림에서 입력과 출력의 관계를 중심으로 살펴보겠습니다.","다음은 원가 절감의 딜레마에 관한 내용입니다. 현장에서 가장 어려워 하는 모터 차단기 선정 공식은 있습니다. 하지만 싸게 만들어야 합니다. 이 예에서 모터는 각 1kW 모터를 사용합니다. (모터는 각 2A 정격으로 간주) MC는 각 3A 혹은 4A를 사용합니다. 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다.","현장에서 가장 어려워 하는 모터 차단기 선정 공식은 있습니다. 하지만 싸게 만들어야 합니다. 그림에서 입력과 출력의 관계를 중심으로 살펴보겠습니다.","계전기가 포함된 모터 구동 회로의 핵심 내용을 짚어보겠습니다. 아직 시퀀스 회로를 배우지 않았습니다. 자세한 내용은 시퀀스 회로 이후에 설명. 각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.","아직 시퀀스 회로를 배우지 않았습니다. 자세한 내용은 시퀀스 회로 이후에 설명. 강조된 기호와 연결 방향을 따라가면 동작 원리를 이해하기 쉽습니다.","먼저 N/F (=노이즈 필터)에서 꼭 알아야 할 내용을 정리해 보겠습니다. Noise를 차단할 수 있는 노이즈 필터 이다 용량에 맞게 선정하면 되기 때문에 큰 어려움은 없습니다. 이 관계를 이해해 두면 뒤에 나오는 회로 설명도 훨씬 쉽게 따라갈 수 있습니다.","Noise를 차단할 수 있는 노이즈 필터 이다 용량에 맞게 선정하면 되기 때문에 큰 어려움은 없습니다. 각 요소가 어디에 연결되고 어떤 역할을 하는지 순서대로 확인해 보겠습니다.","다음은 핵심 정리에 관한 내용입니다. 배선용 차단기는 주로 과전류와 단락으로부터 배선을 보호했습니다. 누전 차단기는 정상 경로로 돌아오지 않는 전류를 감지해 감전과 누전 사고를 줄였습니다. 모터는 기동전류가 크므로 정격 전류만으로 차단기를 선정하면 오동작할 수 있습니다. 실제 선정에서는 제조사 데이터시트, 시간-전류 특성곡선, 차단용량, 관련 규격을 함께 확인해야 합니다. 용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다."];
+    const deck = document.getElementById('deck');
+    const deckBase = '01-15-circuit-breaker-selection-deck.html';
+    const stage = document.querySelector('.stage');
+    const scriptBox = document.getElementById('script');
+    const counter = document.getElementById('counter');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let index = 0;
+    function render(updateDeck = true) {
+      index = Math.max(0, Math.min(index, scripts.length - 1));
+      scriptBox.textContent = scripts[index];
+      counter.textContent = `${index + 1} / ${scripts.length}`;
+      prev.disabled = index === 0;
+      next.disabled = index === scripts.length - 1;
+      if (updateDeck) deck.src = `${deckBase}#${index + 1}`;
+    }
+    function go(delta) { index += delta; render(true); }
+    prev.addEventListener('click', () => go(-1));
+    next.addEventListener('click', () => go(1));
+    stage.addEventListener('click', (event) => {
+      const bounds = stage.getBoundingClientRect();
+      go(event.clientX < bounds.left + bounds.width / 2 ? -1 : 1);
+    });
+    window.addEventListener('keydown', (event) => {
+      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); go(1); }
+      if (['ArrowLeft', 'PageUp'].includes(event.key)) { event.preventDefault(); go(-1); }
+      if (event.key === 'Home') { index = 0; render(true); }
+      if (event.key === 'End') { index = scripts.length - 1; render(true); }
+    });
+    render(false);
+  </script>
+</body>
+</html>
