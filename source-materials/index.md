@@ -1,0 +1,17 @@
+# 전기 전자 기초
+
+- [전체 학습 주제 개요 및 기대 학습 성과 이해](learning-overview.md)
+- [전압, 전류, 저항의 개념](voltage-current-resistance.md)
+- [전압 분배와 전력](voltage-division-and-power.md)
+- [직류와 교류 (60Hz 주파수를 사용하는 이유와 110V/220V 전압 체계를 사용하는 이유)](dc-and-ac.md)
+- [배터리 구조 및 동작 원리 (건전지, 리튬이온 배터리 충, 방전 원리)](battery-structure-and-operation.md)
+- [변압기, 코일, 인덕터, 솔레노이드](transformer-coil-inductor-solenoid.md)
+- [수동 소자의 이해](passive-components.md)
+- [접지와 중성선 그리고 노이즈](ground-neutral-and-noise.md)
+- [스위칭 소자와 제어 장치](switching-devices-and-control.md)
+- [NPN/PNP 센서와 PLC 입출력](npn-pnp-sensors-plc-io.md)
+- [회전기기와 발전기](rotating-machines-and-generators.md)
+- [다이오드와 전력 변환](diodes-and-power-conversion.md)
+- [모터 기동 기술](motor-starting-technologies.md)
+- [AC, DC, BLDC, 스테핑 모터와 서보 제어](motor-types-and-servo-control.md)
+- [전기회로의 보호와 모터 보호 장치](circuit-and-motor-protection.md)

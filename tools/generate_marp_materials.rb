@@ -41,39 +41,16 @@ def visible_points(text, max = 5)
 end
 
 def narration(title, text, image_only: false)
-  list_items = text.lines.each_with_object([]) do |line, items|
-    stripped = line.strip
-    next unless stripped.match?(/^[-*]\s+/)
-    items << stripped.sub(/^[-*]\s+/, "").gsub(/\*\*/, "").strip
-  end
-  source = list_items.empty? ? sentences(text) : list_items
-  detail = source.first(image_only ? 2 : 4).map do |item|
+  source = sentences(text)
+  detail = source.first(image_only ? 3 : 5).map do |item|
     item.match?(/[.!?다요]$/) ? item : "#{item}."
   end.join(" ")
 
   if image_only
-    detail = "그림의 구성 요소와 전류 또는 신호의 흐름을 차례로 확인하겠습니다." if detail.empty?
-    endings = [
-      "강조된 기호와 연결 방향을 따라가면 동작 원리를 이해하기 쉽습니다.",
-      "각 요소가 어디에 연결되고 어떤 역할을 하는지 순서대로 확인해 보겠습니다.",
-      "그림에서 입력과 출력의 관계를 중심으로 살펴보겠습니다."
-    ]
-    return "#{detail} #{endings[title.bytes.sum % endings.length]}"
+    return detail unless detail.empty?
+    return "#{title}의 구성 요소와 연결 관계를 순서대로 확인하겠습니다."
   end
-  return "#{title}의 핵심 용어를 그림과 연결해 전체 흐름을 정리해 보겠습니다." if detail.empty?
-
-  openings = [
-    "#{title}의 핵심 내용을 짚어보겠습니다.",
-    "먼저 #{title}에서 꼭 알아야 할 내용을 정리해 보겠습니다.",
-    "다음은 #{title}에 관한 내용입니다."
-  ]
-  endings = [
-    "각 개념이 서로 어떤 관계를 갖는지 생각하며 정리해 보세요.",
-    "이 관계를 이해해 두면 뒤에 나오는 회로 설명도 훨씬 쉽게 따라갈 수 있습니다.",
-    "용어 자체보다 실제 회로에서 어떤 역할을 하는지에 집중하면 이해하기 쉽습니다."
-  ]
-  variant = title.bytes.sum
-  "#{openings[variant % openings.length]} #{detail} #{endings[variant % endings.length]}"
+  detail.empty? ? "#{title}의 핵심 개념을 정리하겠습니다." : detail
 end
 
 def parse_page(path)
@@ -324,15 +301,15 @@ end
 
 catalog = []
 
-Dir[File.join(PAGES, "01-{01,02,03,04,05,06,07,08,09,10,11,12,13,14,15}-*.md")].sort.each do |path|
+Dir[File.join(PAGES, "[0-9][0-9]-[0-9][0-9]-*.md")].sort.each do |path|
   title, intro, sections = parse_page(path)
   slug = File.basename(path, ".md")
   slides = []
   scripts = []
 
   slides << "<!-- _class: title-slide -->\n\n# #{title}\n\n전기·전자 실무 기초"
-  intro_text = clean_text(intro)
-  scripts << "안녕하세요. 이번 영상에서는 #{title}을 학습하겠습니다. #{intro_text} 이 장을 마치면 핵심 개념을 그림과 연결해 설명할 수 있습니다."
+  intro_text = sentences(intro).first(4).join(" ")
+  scripts << ["안녕하세요. #{title} 내용을 시작하겠습니다.", intro_text].reject(&:empty?).join(" ")
 
   sections.each do |section|
     split_section(section).each do |slide|
