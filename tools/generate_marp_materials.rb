@@ -7,6 +7,16 @@ MARP = File.join(ROOT, "marp")
 SCRIPT = File.join(ROOT, "script")
 HTML = File.join(ROOT, "html")
 
+SCRIPT_OVERRIDES = {
+  "01-01-learning-overview" => {
+    5 => "학습의 출발점이 되는 소형 컨베이어입니다. 벨트와 롤러뿐 아니라 모터 설치 공간, 회전수 조절을 위한 기어, 벨트 장력을 맞추는 조절 장치가 함께 구성되어 있습니다. 앞으로는 이 기계 구조에 전기와 제어 기술을 단계적으로 결합해 실제로 움직이는 장비로 발전시키겠습니다.",
+    7 => "전기회로 실습 장치는 전원 변환 모듈, 모터 구동 모듈, 여러 개의 릴레이와 배선 단자로 구성되어 있습니다. 각 부품을 직접 연결하면서 센서 신호가 릴레이를 거쳐 모터의 정회전과 역회전으로 이어지는 과정을 익히게 됩니다. 회로도에서 배운 논리가 실제 배선에서 어떻게 구현되는지 확인하는 단계입니다.",
+    9 => "컨베이어가 여러 대로 늘어나고 로봇 장치까지 연결되면 단순한 릴레이 회로만으로 전체 동작 순서를 관리하기가 어려워집니다. PLC를 사용하면 각 센서의 상태와 장비의 동작 조건을 프로그램으로 정리할 수 있습니다. 설비 구성이 바뀌더라도 복잡한 배선을 모두 다시 만드는 대신 제어 논리를 수정해 대응할 수 있습니다.",
+    11 => "전자회로에서는 전원부와 모터 구동부, 제어 신호 처리부를 하나의 보드 형태로 구성할 수 있습니다. 릴레이보다 작은 반도체 소자를 이용하면 장치를 소형화하고 더 빠르게 제어할 수 있습니다. 단자와 부품의 역할을 살펴보며 전기 신호가 실제 구동 출력으로 변환되는 흐름을 이해하겠습니다.",
+    13 => "임베디드 제어가 적용되면 센서 입력, 모터 제어, 로봇의 동작 순서를 하나의 프로그램 안에서 처리할 수 있습니다. 각각의 컨베이어와 로봇은 독립된 기계 장치이지만, 마이크로컨트롤러가 신호를 주고받으며 전체 공정을 하나의 시스템처럼 움직이게 합니다. 이 과정에서 하드웨어와 프로그램이 어떻게 연결되는지를 함께 학습합니다."
+  }
+}.freeze
+
 [MARP, SCRIPT, HTML].each { |dir| FileUtils.mkdir_p(dir) }
 
 def clean_text(text)
@@ -40,17 +50,18 @@ def visible_points(text, max = 5)
   end
 end
 
-def narration(title, text, image_only: false)
+def narration(title, text)
   source = sentences(text)
-  detail = source.first(image_only ? 3 : 5).map do |item|
+  detail = source.first(5).map do |item|
     item.match?(/[.!?다요]$/) ? item : "#{item}."
   end.join(" ")
-
-  if image_only
-    return detail unless detail.empty?
-    return "#{title}의 구성 요소와 연결 관계를 순서대로 확인하겠습니다."
-  end
   detail.empty? ? "#{title}의 핵심 개념을 정리하겠습니다." : detail
+end
+
+def image_narration(title, images)
+  labels = images.map(&:first).map { |label| clean_text(label) }.reject(&:empty?).uniq
+  subject = labels.empty? ? title : labels.join("과 ")
+  "#{subject}에 관한 시각 자료입니다. #{title}의 구성 요소를 배치와 연결 방향에 따라 살펴보면, 앞에서 설명한 원리가 실제 장치나 회로에 적용되는 과정을 확인할 수 있습니다."
 end
 
 def parse_page(path)
@@ -325,10 +336,19 @@ Dir[File.join(PAGES, "[0-9][0-9]-[0-9][0-9]-*.md")].sort.each do |path|
           %(<img src="#{escaped_src}" alt="#{escaped_alt}">)
         end.join("\n")
         content = "## #{slide[:title]}\n\n<div class=\"#{klass}\">\n\n#{imgs}\n\n</div>"
-        scripts << narration(slide[:title], slide[:source_text], image_only: true)
+        image_script = image_narration(slide[:title], slide[:images])
+        occurrence = scripts.count(image_script) + 1
+        if occurrence > 1
+          image_script += " 같은 주제를 다룬 #{occurrence}번째 자료이므로, 앞선 자료와 비교하며 구성과 동작의 차이를 확인하겠습니다."
+        end
+        scripts << image_script
       end
       slides << content
     end
+  end
+
+  SCRIPT_OVERRIDES.fetch(slug, {}).each do |slide_number, text|
+    scripts[slide_number - 1] = text
   end
 
   marp_text = marp_header + slides.join("\n\n---\n\n") + "\n"
