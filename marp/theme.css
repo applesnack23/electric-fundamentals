@@ -1,0 +1,36 @@
+/* @theme mechanical */
+@import 'default';
+
+section {
+  background: #f7f6f1;
+  color: #1f2933;
+  font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+  font-size: 32px;
+  padding: 76px 100px;
+}
+h1 { color: #b45309; font-size: 58px; letter-spacing: -0.04em; }
+h2 { color: #263238; font-size: 50px; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 34px; }
+strong { color: #b45309; }
+blockquote { border-left: 10px solid #d97706; background: #fff4df; padding: 22px 30px; }
+table { font-size: 31px; }
+footer { color: #667085; font-size: 20px; }
+section::after { color: #667085; font-size: 22px; }
+.title { background: linear-gradient(135deg, #17202a 0%, #704214 100%); color: white; }
+.title h1, .title h2 { color: white; }
+.title footer, .title::after { color: #f5dfbd; }
+.center { text-align: center; }
+.flow { font-size: 43px; line-height: 1.8; text-align: center; }
+.small { font-size: 30px; }
+
+section.dense { font-size: 28px; padding: 58px 82px; }
+section.compact { font-size: 20px; padding: 44px 68px; }
+section.dense h1, section.compact h1 { font-size: 50px; }
+section.dense h2, section.compact h2 { font-size: 40px; }
+section.dense h3, section.compact h3 { font-size: 28px; }
+section.compact table { font-size: 18px; }
+section img { max-width: 88%; max-height: 520px; object-fit: contain; }
+section.dense img { max-height: 400px; }
+section.compact img { max-height: 300px; }
+
+section.title h1 { font-size: 68px; }
+section.title h2 { font-size: 46px; }
